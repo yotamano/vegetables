@@ -17,6 +17,9 @@ body{
  width: 50%;
  padding: 10px;
  transition: transform 250ms;
+ display: flex;
+justify-content: center;
+align-items: center;
 
 }
 
@@ -37,7 +40,7 @@ h1{
   text-align: center;
   line-height: 80%;
   transition:  0.5s;
-
+  display:inline;
 }
 body.hover{
   background: #dddddd;

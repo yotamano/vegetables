@@ -1,0 +1,78 @@
+<<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>vegetables</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  </head>
+  <body>
+    <div class="text-container">
+    <h1>
+    אני
+    <div class="no">לא</div>
+      אוכל
+      <div class="veg"> ירקות</div></h1>
+  </div>
+  </body>
+
+  <script>
+  document.querySelector('body').onmousemove = (e) => {
+    const x = e.pageX - e.target.offsetLeft
+    const y = e.pageY - e.target.offsetTop
+    e.target.style.setProperty('--x', `${ x }px`)
+    e.target.style.setProperty('--y', `${ y }px`)
+
+
+  }
+
+  var vegetable = ['cucumber.png','tomato.png','avocado.png','carrot.png','broccoli.png','eggplant.png'];
+  var vegName = ['מלפפון','עגבניה','אבוקדו','גזר','ברוקולי','חציל'];
+    var num =Math.floor(Math.random() * vegetable.length);
+    var previous = num;
+
+  $("body").css('cursor','url('+vegetable[num]+'),auto');
+  $(document).ready(function(){
+
+  });
+$('.text-container').click(function() {
+   $('.no').addClass("shake-horizontal");
+      $('body').addClass('after');
+   $('h1').addClass('after');
+   var num = Math.floor(Math.random() * vegetable.length);
+
+    $("body").css('cursor','url('+vegetable[num]+'),auto');
+    $(".veg").html(vegName[previous]);
+    previous = num;
+    $('h1').removeClass('check-vertical');
+       setTimeout(function () {
+  $('.no').removeClass("shake-horizontal");
+  $(".veg").html('ירקות');
+   $('body').removeClass('after');
+   $('body').removeClass('hover');
+   $('h1').removeClass('after');
+
+
+   }, 1000);
+   });
+
+
+
+   $('h1').hover(
+  function () {
+    $('body').addClass('hover');
+    $('h1').addClass('check-vertical');
+
+  },
+  function () {
+    $('body').removeClass('hover');
+    $('h1').removeClass('check-vertical');
+
+  }
+);
+
+
+
+  </script>
+</html>

@@ -26,10 +26,14 @@
 
   }
 
-  var vegetable = ['cucumber.png','tomato.png','avocado.png','carrot.png','broccoli.png','eggplant.png'];
-   var vegName = ['מלפפון','עגבניה','אבוקדו','גזר','ברוקולי','חציל'];
+  var vegetable = ['cucumber.png','tomato.png','avocado.png','carrot.png','broccoli.png','eggplant.png','leafy-green.png','pepper.png'];
+   var vegName = ['מלפפון','עגבניה','אבוקדו','גזר','ברוקולי','חציל','חסה','פלפל'];
+   var nonVeg = ['pizza.png','hamburger.png'];
+   var nonVegName = ['פיצה','המבורגר'];
   var num =Math.floor(Math.random() * vegetable.length);
   var previous = num;
+  var vegCount = 0;
+  var recation = false;
 
 
   $("body").css('cursor','url('+vegetable[num]+'),auto');
@@ -37,25 +41,55 @@
 
   });
 $('.text-container').click(function() {
-   $('.no').addClass("shake-horizontal");
-      $('body').addClass('after');
-   $('h1').addClass('after');
+  $('h1').removeClass('check-vertical');
+
+if (recation == false){
+  vegCount++
+  $('.no').addClass("shake-horizontal");
+  $('h1').addClass('after');
+  $(".veg").html(vegName[previous]);
+}
+if (recation == true){
+  vegCount = 0;
+  $('.no').addClass("shake-vertical");
+  $(".no").html('כן');
+  $('h1').addClass('yes');
+  $(".veg").html(nonVegName[previous]);
+}
+  $('body').addClass('after');
+
+  setTimeout(function () {
+$('.no').removeClass("shake-horizontal");
+$('.no').removeClass("shake-vertical");
+$(".no").html('לא');
+$(".veg").html('ירקות');
+$('body').removeClass('after');
+// $('body').removeClass('hover');
+$('h1').removeClass('after');
+$('h1').removeClass('yes');
+ }, 1000);
+
+ if (vegCount < 4){
+   console.log(vegCount);
    var num = Math.floor(Math.random() * vegetable.length);
-
-    $("body").css('cursor','url('+vegetable[num]+'),auto');
-    $(".veg").html(vegName[previous]);
+  $("body").css('cursor','url('+vegetable[num]+'),auto');
     previous = num;
-    $('h1').removeClass('check-vertical');
-       setTimeout(function () {
-  $('.no').removeClass("shake-horizontal");
-  $(".veg").html('ירקות');
-   $('body').removeClass('after');
-   $('body').removeClass('hover');
-   $('h1').removeClass('after');
+    recation = false;
+
+  }else{
+      var num = Math.floor(Math.random() * nonVeg.length);
+      $("body").css('cursor','url('+nonVeg[num]+'),auto');
+      previous = num;
+      recation = true;
+    }
 
 
-   }, 1000);
+
+
+
+
    });
+
 
 
 

@@ -7,6 +7,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   </head>
   <body>
+    <div id="food"></div>
+    <div id="cursor"></div>
     <div class="text-container">
     <h1>
     אני
@@ -17,7 +19,30 @@
   </body>
 
   <script>
+  $(document).mousemove(function(e) {
+    const cursor = $('#cursor');
+    const target = $(event.target);
+    // update position of cursor
+    cursor.css('left', e.clientX-10).css('top', e.clientY-10);
 
+    const isHovered = cursor.hasClass('hoveredCursor');
+    // toggle the cursor class if necessary
+
+  });
+
+  $(document).mouseleave(function(e) {
+
+    const cursor = $('#cursor');
+    cursor.hide()
+
+  });
+
+  $(document).mouseenter(function(e) {
+
+    const cursor = $('#cursor');
+    cursor.show()
+
+  });
 
   var vegetable = ['cucumber.png','tomato.png','avocado.png','carrot.png','broccoli.png','eggplant.png','leafy-green.png','pepper.png'];
    var vegName = ['מלפפון','עגבניה','אבוקדו','גזר','ברוקולי','חציל','חסה','פלפל'];
@@ -29,18 +54,20 @@
   var recation = false;
 
 
-  $("body").css('cursor','url('+vegetable[num]+'),auto');
+  $("#cursor").css('content','url('+vegetable[num]+')');
   $(document).ready(function(){
 
   });
 $('.text-container').click(function() {
   $('h1').removeClass('check-vertical');
-
+  $("#cursor").removeClass('scale-in-center');
 if (recation == false){
   vegCount++
   $('.no').addClass("shake-horizontal");
   $('h1').addClass('after');
   $(".veg").html(vegName[previous]);
+  $('#cursor').addClass("swirl-out-bck");
+  // $("#cursor").css('content','url(tenor.gif)');
 }
 if (recation == true){
   vegCount = 0;
@@ -48,35 +75,42 @@ if (recation == true){
   $(".no").html('כן');
   $('h1').addClass('yes');
   $(".veg").html(nonVegName[previous]);
+  $('#food').prepend('<img class=scale-in-center src="'+nonVeg[previous]+'"/>');
 }
   $('body').addClass('after');
 
   setTimeout(function () {
 $('.no').removeClass("shake-horizontal");
 $('.no').removeClass("shake-vertical");
+// $('#cursor').removeClass('hoveredCursor');
 $(".no").html('לא');
 $(".veg").html('ירקות');
 $('body').removeClass('after');
 // $('body').removeClass('hover');
 $('h1').removeClass('after');
 $('h1').removeClass('yes');
- }, 1000);
+changeVeg();
+$('#cursor').removeClass("swirl-out-bck");
+}, 1500);
 
+function changeVeg(){
  if (vegCount < 4){
    console.log(vegCount);
    var num = Math.floor(Math.random() * vegetable.length);
-  $("body").css('cursor','url('+vegetable[num]+'),auto');
-    previous = num;
+   $("#cursor").addClass('scale-in-center');
+  $("#cursor").css('content','url('+vegetable[num]+')');
+      previous = num;
     recation = false;
 
   }else{
       var num = Math.floor(Math.random() * nonVeg.length);
-      $("body").css('cursor','url('+nonVeg[num]+'),auto');
+      $("#cursor").addClass('scale-in-center');
+      $("#cursor").css('content','url('+nonVeg[num]+')');
       previous = num;
       recation = true;
     }
 
-
+};
 
 
 
@@ -90,12 +124,12 @@ $('h1').removeClass('yes');
   function () {
     $('body').addClass('hover');
     $('h1').addClass('check-vertical');
-
+    $('#cursor').addClass('hoveredCursor');
   },
   function () {
     $('body').removeClass('hover');
     $('h1').removeClass('check-vertical');
-
+    $('#cursor').removeClass('hoveredCursor');
   }
 );
 

@@ -16,6 +16,8 @@
       אוכל
       <div class="veg"> ירקות</div></h1>
   </div>
+  <audio id="green" src="Complete 2.m4a"></audio>
+  <audio id="red" src="Error 4.m4a"></audio>
   </body>
 
   <script>
@@ -52,6 +54,8 @@
   var previous = num;
   var vegCount = 0;
   var recation = false;
+  var opacityVal = 1;
+  var i =100;
 
 
   $("#cursor").css('content','url('+vegetable[num]+')');
@@ -63,6 +67,7 @@ $('.text-container').click(function() {
   $("#cursor").removeClass('scale-in-center');
 if (recation == false){
   vegCount++
+  $('#red').get(0).play();
   $('.no').addClass("shake-horizontal");
   $('h1').addClass('after');
   $(".veg").html(vegName[previous]);
@@ -71,11 +76,17 @@ if (recation == false){
 }
 if (recation == true){
   vegCount = 0;
+  $('#green').get(0).play();
   $('.no').addClass("shake-vertical");
   $(".no").html('כן');
   $('h1').addClass('yes');
   $(".veg").html(nonVegName[previous]);
   $('#food').prepend('<img class=scale-in-center src="'+nonVeg[previous]+'"/>');
+  if(i>=10){
+    i--
+   opacityVal = i/100;
+};
+  $('h1').css('opacity', ''+opacityVal+'');
 }
   $('body').addClass('after');
 

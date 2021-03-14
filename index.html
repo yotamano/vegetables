@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>vegetables</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="favicon.ico">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   </head>
   <body>
@@ -81,6 +82,7 @@ if (recation == true){
   $(".no").html('כן');
   $('h1').addClass('yes');
   $(".veg").html(nonVegName[previous]);
+  $('#cursor').addClass("slide-out-top");
   $('#food').prepend('<img class=scale-in-center src="'+nonVeg[previous]+'"/>');
   if(i>=10){
     i--
@@ -102,6 +104,7 @@ $('h1').removeClass('after');
 $('h1').removeClass('yes');
 changeVeg();
 $('#cursor').removeClass("swirl-out-bck");
+$('#cursor').removeClass("slide-out-top");
 }, 1500);
 
 function changeVeg(){
